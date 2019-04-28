@@ -5,8 +5,9 @@ import '../styles/_CardContainer.scss';
 function CardContainer(props) {
 		return (
 			<main className="card-container">
-				{props.ideas.map((idea, index) => {
-					return (<Card key={index} title={idea.title} body={idea.body}
+				{props.ideas.map((idea) => {
+					return (<Card key={idea.id} id={idea.id} title={idea.title} body={idea.body}
+						deleteIdea={props.deleteIdea}
 					/>)	
 				})}
 				

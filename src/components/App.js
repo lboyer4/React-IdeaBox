@@ -32,9 +32,9 @@ class App extends Component {
     localStorage.setItem('ideas', stringyIdeas)
   }
 
-  createNewIdea = (title, body) => {
+  createNewIdea = (title, body, id) => {
     const newIdea = [{title: title,
-        body: body}]
+        body: body, id: Date.now()}]
     if (this.state.allIdeas === null) {
       this.setState({ allIdeas: newIdea })
     } else {
@@ -44,8 +44,19 @@ class App extends Component {
     }
   }
 
+  deleteIdea = (id) => {
+
+    let indexToDelete = this.state.allIdeas.findIndex(idea => {
+      return idea.id === id
+    })
+    console.log(indexToDelete)
+    this.state.allIdeas.splice(indexToDelete, 1)
+    this.setState({allIdeas: this.state.allIdeas})
+  }
+
   render () {
-    let cardContainer = this.state.allIdeas && <CardContainer ideas={this.state.allIdeas} />
+    let cardContainer = this.state.allIdeas && <CardContainer ideas={this.state.allIdeas}
+      deleteIdea={this.deleteIdea} />
     return (
       <div>
         <Header />

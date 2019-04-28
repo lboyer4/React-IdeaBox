@@ -12,7 +12,7 @@ class Form extends Component {
 	clickHandler = (e) => {
 		let title =e.target.parentElement.querySelector('.title').value;
 		let body = e.target.parentElement.querySelector('.body').value
-		this.props.createNewIdea(title, body)
+		this.props.createNewIdea(title, body, this.props.key)
 	}
 
 	render() {
