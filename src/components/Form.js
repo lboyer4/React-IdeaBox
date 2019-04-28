@@ -19,9 +19,9 @@ class Form extends Component {
 		return (
 			<main className="form-holder">
 				<form>
-					<label for="title">Title</label>
+					<label htmlFor="title">Title</label>
 	      		<textarea rows="2" cols="50" className="title" type="text" name="title"></textarea>
-	      	<label for="body">Body</label>
+	      	<label htmlFor="body">Body</label>
 	      		<textarea rows="4" cols="50" className="body" type="text" name="Body"></textarea>
 	      	<button onClick={this.clickHandler} className="save-btn"type="button" name="Save">Save</button>
 				</form>

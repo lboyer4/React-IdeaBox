@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Card from './Card.js';
 import '../styles/_CardContainer.scss';
 
 function CardContainer(props) {
-	console.log(props)
 		return (
-			<main>
-				{props.ideas.map(idea => {
-					return (<Card title={idea.title} body={idea.body}
+			<main className="card-container">
+				{props.ideas.map((idea, index) => {
+					return (<Card key={index} title={idea.title} body={idea.body}
 					/>)	
 				})}
 				
