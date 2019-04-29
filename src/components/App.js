@@ -8,7 +8,9 @@ class App extends Component {
   constructor() {
     super() 
     this.state = {
-      allIdeas: []
+      searching: false,
+      allIdeas: [],
+      filteredIdeas: []
     }
   }
 
@@ -49,17 +51,40 @@ class App extends Component {
     let indexToDelete = this.state.allIdeas.findIndex(idea => {
       return idea.id === id
     })
-    console.log(indexToDelete)
     this.state.allIdeas.splice(indexToDelete, 1)
     this.setState({allIdeas: this.state.allIdeas})
   }
 
+  filterIdeas = (query) => {
+    let filteredIdeas = this.state.allIdeas.filter(idea => {
+      return idea.title === query;
+    })
+    if (query) {
+      this.setState({
+        filteredIdeas: filteredIdeas,
+        searching: true 
+      })
+    } else {
+      this.setState({ searching: false })
+    }
+  }
+
   render () {
-    let cardContainer = this.state.allIdeas && <CardContainer ideas={this.state.allIdeas}
-      deleteIdea={this.deleteIdea} />
+    let cardContainer;
+    if (this.state.searching) {
+      cardContainer = <CardContainer 
+        ideas={this.state.filteredIdeas}
+        deleteIdea={this.deleteIdea} 
+      />
+    } else {
+      cardContainer = <CardContainer 
+        ideas={this.state.allIdeas}
+        deleteIdea={this.deleteIdea} 
+      />
+    }
     return (
       <div>
-        <Header />
+        <Header filterIdeas={this.filterIdeas}/>
         <Form createNewIdea={this.createNewIdea}/>
         {cardContainer}
       </div>

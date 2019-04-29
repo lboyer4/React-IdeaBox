@@ -9,13 +9,17 @@ class Header extends Component {
 		}
 	}
 
+	changeHandler = (e) => {
+		this.props.filterIdeas(e.target.value)
+	}
+
 	render() {
 		return (
 			<header> 
     <h1> <span className="color-ideabox">ideabox</span>triples
     </h1>
 				<nav>
-					<input className="search-bar" type="text" name="search"
+					<input onChange={this.changeHandler}className="search-bar" type="text" name="search"
     placeholder="Search">
     			</input>
     		</nav>
